@@ -12,7 +12,8 @@ import os
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-client = MongoClient("mongodb://127.0.0.1:27017") #host uri  
+# client = MongoClient("mongodb://127.0.0.1:27017") #host uri  
+client = MongoClient("mongodb+srv://root:passwordroot@cluster0.18gmih5.mongodb.net/?retryWrites=true&w=majority")
 db = client["pub_sub"] #Select the database  
 publishers_collection = db["publishers"] #Select the collection name
 subscribers_collection = db["subscribers"]
