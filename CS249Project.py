@@ -17,6 +17,7 @@ consumerServer = ""
 myserverIP = ""
 
 def sendUpdateMessage(server,response):
+    print('http://'+server + '/update')
     res = requests.post('http://'+server + '/update', json=response)
     print(res.status_code)
     if res.status_code == 200:
@@ -36,6 +37,7 @@ def addToAllQueue(response):
     errorWithServer = []
     print("LL")
     for server in serverList:
+        print(server)
         if sendUpdateMessage(server,response) == False:
             errorWithServer.append(server)
     
@@ -80,12 +82,17 @@ def updateQueue():
         return Response("Successful", status='200')
 
 def registerQueueAsMaster():
-    #Only for test
-    return True
-    response = requests.get('http://'+consumerServer + '/queue-id', params={'ipAddress': myserverIP})
+    # #Only for test
+    # return True
+    print('http://'+consumerServer + '/subserver/queue-id?ipAddress=' + myserverIP)
+    response = requests.get('http://'+consumerServer + '/subserver/queue-id?ipAddress=' + myserverIP)
     if response.status_code == 200:
         return True
     return False
+
+# @app.route('/ping', methods="GET")
+# def ping():
+#     res = requests.get('http://'+consumerServer + '/subserver)
 
 @app.route('/updateServerList',methods=['POST'])
 def updateServerList():
@@ -187,8 +194,9 @@ def replicateQueue():
     
 def triggerAttempt():
     #Only for Test
-    return True
-    requests.get('http://'+consumerServer + '/subserver/messages')
+    # return True
+    res = requests.get('http://'+consumerServer + '/subserver/trigger')
+    print(res)
 
     
 
