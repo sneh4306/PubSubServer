@@ -33,9 +33,9 @@ def findMajority(n,queues):
         r = requests.post("http://"+queues[i]+"/electMaster", json=data)
         # print(r.text)
         # print(type(r))
-        temp_dict[int(r.text)]+=1
-        if temp_dict[int(r.text)]>majorityNumber:
-            majorityNumber = temp_dict[int(r.text)]
+        temp_dict[r.text]+=1
+        if temp_dict[r.text]>majorityNumber:
+            majorityNumber = temp_dict[r.text]
     if majorityNumber == 1:
         return findMajority(n)
     return majorityNumber
