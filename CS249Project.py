@@ -253,7 +253,7 @@ def register():
 def electMaster():
     lower_limit = request.get_json()['lower_limit']
     upper_limit = request.get_json()['upper_limit']
-    return Response(random.randint(lower_limit, upper_limit),status='200')
+    return Response(str(random.randint(lower_limit, upper_limit)),status='200')
 
 if __name__ == '__main__':
     app.run(host="localhost", port=int(sys.argv[1]), debug=True)
