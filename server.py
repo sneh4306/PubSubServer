@@ -37,7 +37,7 @@ def findMajority(n,queues):
         if temp_dict[r.text]>majorityNumber:
             majorityNumber = temp_dict[r.text]
     if majorityNumber == 1:
-        return findMajority(n)
+        return findMajority(n,queues)
     return majorityNumber
             
 
